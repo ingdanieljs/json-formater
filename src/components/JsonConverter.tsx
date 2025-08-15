@@ -14,7 +14,7 @@ export const JsonConverter = () => {
   const [copiedPhp, setCopiedPhp] = useState(false);
   const { toast } = useToast();
 
-  const jsonToPhpArray = (obj: any, indent: number = 0): string => {
+  const jsonToPhpArray = (obj: unknown, indent: number = 0): string => {
     const spaces = "    ".repeat(indent);
 
     if (obj === null) return "null";
@@ -65,7 +65,7 @@ export const JsonConverter = () => {
       cleanInput = cleanInput.replace(/\\\\n/g, "\\n").replace(/\\\\t/g, "\\t");
 
       // Fix common issues with single backslashes that aren't valid escapes
-      cleanInput = cleanInput.replace(/\\([^"\\\/bfnrtu])/g, "$1");
+      cleanInput = cleanInput.replace(/\\([^"\\/bfnrtu])/g, "$1");
 
       const parsed = JSON.parse(cleanInput);
 
